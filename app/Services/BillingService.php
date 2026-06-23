@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Billing;
+
+class BillingService
+{
+    // 🟢 সব billings list
+    public function getAllBillings()
+    {
+        return Billing::all();
+    }
+
+    // 🟢 নতুন billing তৈরি
+    public function createBilling(array $data)
+    {
+        return Billing::create($data);
+    }
+
+    // 🟢 নির্দিষ্ট billing দেখাও
+    public function getBillingById($id)
+    {
+        return Billing::findOrFail($id);
+    }
+
+    // 🟢 billing update করো
+    public function updateBilling($id, array $data)
+    {
+        $billing = Billing::findOrFail($id);
+        $billing->update($data);
+        return $billing;
+    }
+
+    // 🟢 billing delete করো
+    public function deleteBilling($id)
+    {
+        $billing = Billing::findOrFail($id);
+        return $billing->delete();
+    }
+}
