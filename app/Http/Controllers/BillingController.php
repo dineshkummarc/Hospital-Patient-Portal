@@ -7,14 +7,12 @@ use App\Models\Billing;
 
 class BillingController extends Controller
 {
-    // 🟢 GET: সব billings list দেখাও
     public function index()
     {
         $billings = Billing::all();
         return response()->json($billings);
     }
 
-    // 🟢 POST: নতুন billing তৈরি করো
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -27,14 +25,12 @@ class BillingController extends Controller
         return response()->json($billing, 201);
     }
 
-    // 🟢 GET: নির্দিষ্ট billing দেখাও
     public function show($id)
     {
         $billing = Billing::findOrFail($id);
         return response()->json($billing);
     }
 
-    // 🟢 PUT/PATCH: billing update করো
     public function update(Request $request, $id)
     {
         $billing = Billing::findOrFail($id);
@@ -48,7 +44,6 @@ class BillingController extends Controller
         return response()->json($billing);
     }
 
-    // 🟢 DELETE: billing delete করো
     public function destroy($id)
     {
         $billing = Billing::findOrFail($id);

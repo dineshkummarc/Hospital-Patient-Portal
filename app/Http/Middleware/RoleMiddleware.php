@@ -9,7 +9,6 @@ class RoleMiddleware
 {
     public function handle($request, Closure $next, $role)
     {
-        // JWT token থেকে user বের করো
         $user = JWTAuth::parseToken()->authenticate();
 
         if (!$user || $user->role !== $role) {

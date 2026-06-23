@@ -14,14 +14,12 @@ class PatientController extends Controller
         $this->patientService = $patientService;
     }
 
-    // 🟢 GET: সব patients list দেখাও
     public function index()
     {
         $patients = $this->patientService->getAllPatients();
         return response()->json($patients);
     }
 
-    // 🟢 POST: নতুন patient create করো
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -37,14 +35,12 @@ class PatientController extends Controller
         return response()->json($patient, 201);
     }
 
-    // 🟢 GET: নির্দিষ্ট patient দেখাও
     public function show($id)
     {
         $patient = $this->patientService->getPatientById($id);
         return response()->json($patient);
     }
 
-    // 🟢 PUT: patient update করো
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -57,7 +53,6 @@ class PatientController extends Controller
         return response()->json($patient);
     }
 
-    // 🟢 DELETE: patient delete করো
     public function destroy($id)
     {
         $this->patientService->deletePatient($id);

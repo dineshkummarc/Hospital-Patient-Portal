@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('patients', function (Blueprint $table) {
-            // নতুন email column যোগ করো
             $table->string('email')->unique()->nullable()->after('name');
 
         });
@@ -24,7 +23,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('patients', function (Blueprint $table) {
-            // rollback করলে email column drop হবে
             $table->dropColumn('email');
         });
     }

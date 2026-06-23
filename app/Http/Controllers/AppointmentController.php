@@ -7,14 +7,12 @@ use App\Models\Appointment;
 
 class AppointmentController extends Controller
 {
-    // 🟢 GET: সব appointments list দেখাও
     public function index()
     {
         $appointments = Appointment::all();
         return response()->json($appointments);
     }
 
-    // 🟢 POST: নতুন appointment তৈরি করো
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -29,14 +27,12 @@ class AppointmentController extends Controller
         return response()->json($appointment, 201);
     }
 
-    // 🟢 GET: নির্দিষ্ট appointment দেখাও
     public function show($id)
     {
         $appointment = Appointment::findOrFail($id);
         return response()->json($appointment);
     }
 
-    // 🟢 PUT/PATCH: appointment update করো
     public function update(Request $request, $id)
     {
         $appointment = Appointment::findOrFail($id);
@@ -52,7 +48,6 @@ class AppointmentController extends Controller
         return response()->json($appointment);
     }
 
-    // 🟢 DELETE: appointment delete করো
     public function destroy($id)
     {
         $appointment = Appointment::findOrFail($id);

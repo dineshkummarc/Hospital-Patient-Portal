@@ -9,7 +9,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-    // 🟢 Register new user
     public function register(Request $request)
     {
         try {
@@ -28,7 +27,6 @@ class AuthController extends Controller
                 'email_verified_at' => now()
             ]);
 
-            // 🔑 Custom claims সহ token তৈরি
             $token = JWTAuth::claims([
                 'role'  => $user->role,
                 'email' => $user->email,
@@ -49,7 +47,6 @@ class AuthController extends Controller
         }
     }
 
-    // 🟢 Login user
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -63,7 +60,6 @@ class AuthController extends Controller
 
         $user = JWTAuth::user();
 
-        // 🔑 Custom claims সহ token তৈরি
         $token = JWTAuth::claims([
             'role'  => $user->role,
             'email' => $user->email,
@@ -77,13 +73,12 @@ class AuthController extends Controller
         ]);
     }
 
-    // 🟢 Get current authenticated user
+
     public function me()
     {
         return response()->json(JWTAuth::parseToken()->authenticate());
     }
 
-    // 🟢 Logout user
     public function logout()
     {
         JWTAuth::invalidate(JWTAuth::getToken());

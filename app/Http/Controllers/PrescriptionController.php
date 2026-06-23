@@ -7,14 +7,12 @@ use App\Models\Prescription;
 
 class PrescriptionController extends Controller
 {
-    // 🟢 GET: সব prescriptions list দেখাও
     public function index()
     {
         $prescriptions = Prescription::all();
         return response()->json($prescriptions);
     }
 
-    // 🟢 POST: নতুন prescription তৈরি করো (ফাইল upload সহ)
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -23,7 +21,6 @@ class PrescriptionController extends Controller
             'file'        => 'required|file|mimes:pdf,jpg,png',
         ]);
 
-        // ফাইল upload করে path save করো
         $path = $request->file('file')->store('prescriptions', 'public');
 
         $prescription = Prescription::create([
@@ -35,14 +32,12 @@ class PrescriptionController extends Controller
         return response()->json($prescription, 201);
     }
 
-    // 🟢 GET: নির্দিষ্ট prescription দেখাও
     public function show($id)
     {
         $prescription = Prescription::findOrFail($id);
         return response()->json($prescription);
     }
 
-    // 🟢 PUT/PATCH: prescription update করো
     public function update(Request $request, $id)
     {
         $prescription = Prescription::findOrFail($id);
@@ -61,7 +56,6 @@ class PrescriptionController extends Controller
         return response()->json($prescription);
     }
 
-    // 🟢 DELETE: prescription delete করো
     public function destroy($id)
     {
         $prescription = Prescription::findOrFail($id);
